@@ -562,6 +562,4 @@ set list
 
 " Terminal settings
 tnoremap <C-[> <C-\><C-n>
-
 nnoremap <C-T> :15sp<CR>:term<CR><C-W>x
-

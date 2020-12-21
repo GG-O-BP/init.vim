@@ -1,10 +1,10 @@
 {
     "fsdeploy.nodes": [
         {
-            "source": "/dev/source/init.vim/linux/init.vim",
-            "target": "~/.config/nvim/init.vim",
-            "include": "**/*.*",
-            "deleteTargetOnDeploy": false
+            "source": "../init.vim/linux",
+            "target": "~/.config/nvim",
+            "include": "init.vim",
+            "deleteTargetOnDeploy": true
         }
     ]
 }

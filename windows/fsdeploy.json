@@ -1,0 +1,10 @@
+{
+    "fsdeploy.nodes": [
+        {
+            "source": "C:/Dev/Source/init.vim/windows/init.vim",
+            "target": "C:/Users/GGOBP/AppData/Local/nvim/init.vim",
+            "include": "**/*.*",
+            "deleteTargetOnDeploy": false
+        }
+    ]
+}

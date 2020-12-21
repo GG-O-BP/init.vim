@@ -546,12 +546,6 @@ if !exists('g : vscode')
   let g:neovide_cursor_vfx_mode = "pixiedust"
   let g:neovide_cursor_vfx_particle_density = 150
 
-  " Note, you need to empty the file Git\etc\motd
-  " to get rid of the 'Welcome to Git' message
-  " set shell=cmd.exe
-  " set shell=bash.exe
-  set shell=C:/Git/bin/bash.exe
-
   set guifont=FiraCode,D2Coding :h12
 
 endif
@@ -564,4 +558,3 @@ set list
 tnoremap <C-[> <C-\><C-n>
 
 nnoremap <C-T> :15sp<CR>:term<CR><C-W>x
-

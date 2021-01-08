@@ -5,23 +5,29 @@ if !exists('g : vscode')
   "" Vim-PLug core
   "*****************************************************************************
   let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+  if has('win32')&&!has('win64')
+    let curl_exists=expand('C:\Windows\Sysnative\curl.exe')
+  else
+    let curl_exists=expand('curl')
+  endif
 
-  let g:vim_bootstrap_langs = "c,html,javascript,python"
-  let g:vim_bootstrap_editor = "nvim"				" nvim or vim
+  let g:vim_bootstrap_langs = "html,javascript,php,python,rust,typescript"
+  let g:vim_bootstrap_editor = "nvim"
+  let g:vim_bootstrap_theme = "molokai"
+  let g:vim_bootstrap_frams = "vuejs"
 
   if !filereadable(vimplug_exists)
-    if !executable("curl")
+    if !executable(curl_exists)
       echoerr "You have to install curl or first install vim-plug yourself!"
       execute "q!"
     endif
     echo "Installing Vim-Plug..."
     echo ""
-    silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    silent exec "!"curl_exists" -fLo " . shellescape(vimplug_exists) . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     let g:not_finish_vimplug = "yes"
 
     autocmd VimEnter * PlugInstall
   endif
-
 
   " Required:
   call plug#begin(expand('~/.config/nvim/plugged'))
@@ -29,11 +35,9 @@ if !exists('g : vscode')
   "*****************************************************************************
   "" Plug install packages
   "*****************************************************************************
-  Plug 'joshdick/onedark.vim'
-  Plug 'iCyMind/NeoSolarized'
-
   Plug 'scrooloose/nerdtree'
   Plug 'jistr/vim-nerdtree-tabs'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
   Plug 'vim-airline/vim-airline'
@@ -43,13 +47,14 @@ if !exists('g : vscode')
   Plug 'vim-scripts/CSApprox'
   Plug 'Raimondi/delimitMate'
   Plug 'majutsushi/tagbar'
-  Plug 'w0rp/ale'
+  Plug 'dense-analysis/ale'
   Plug 'Yggdroot/indentLine'
-  Plug 'avelino/vim-bootstrap-updater'
-  Plug 'sheerun/vim-polyglot'
+  Plug 'editor-bootstrap/vim-bootstrap-updater'
   Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
+  Plug 'tomasr/molokai'
 
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
 
   if isdirectory('/usr/local/opt/fzf')
     Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -71,23 +76,14 @@ if !exists('g : vscode')
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
 
-  "" Color
-  Plug 'tomasr/molokai'
-  Plug 'morhetz/gruvbox'
-
   "*****************************************************************************
   "" Custom bundles
   "*****************************************************************************
 
-  " c
-  Plug 'vim-scripts/c.vim', {'for': ['c', 'cpp']}
-  Plug 'ludwig/split-manpage.vim'
-
-
   " html
   "" HTML Bundle
   Plug 'hail2u/vim-css3-syntax'
-  Plug 'gorodinskiy/vim-coloresque'
+  Plug 'gko/vim-coloresque'
   Plug 'tpope/vim-haml'
   Plug 'mattn/emmet-vim'
 
@@ -97,10 +93,62 @@ if !exists('g : vscode')
   Plug 'jelera/vim-javascript-syntax'
 
 
+  " php
+  "" PHP Bundle
+  Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install --no-dev -o'}
+  Plug 'stephpy/vim-php-cs-fixer'
+
+
   " python
   "" Python Bundle
   Plug 'davidhalter/jedi-vim'
   Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+
+
+  " rust
+  " Vim racer
+  Plug 'racer-rust/vim-racer'
+
+  " Rust.vim
+  Plug 'rust-lang/rust.vim'
+
+  " Async.vim
+  Plug 'prabirshrestha/async.vim'
+
+  " Vim lsp
+  Plug 'prabirshrestha/vim-lsp'
+
+  " Asyncomplete.vim
+  Plug 'prabirshrestha/asyncomplete.vim'
+
+  " Asyncomplete lsp.vim
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+
+  " typescript
+  Plug 'leafgarland/typescript-vim'
+  Plug 'HerringtonDarkholme/yats.vim'
+
+
+  " vuejs
+  Plug 'posva/vim-vue'
+  Plug 'leafOfTree/vim-vue-plugin'
+
+
+  "" Irc
+  Plug 'marchelzo/ircnvim'
+
+
+  "" Inko
+  Plug 'GG-O-BP/inko.vim'
+
+
+  "ESLint for ui-framework
+  Plug 'eslint/eslint'
+
+
+  "Prettier for ui-framework
+  Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
   "*****************************************************************************
   "*****************************************************************************
@@ -129,9 +177,9 @@ if !exists('g : vscode')
   set backspace=indent,eol,start
 
   "" Tabs. May be overridden by autocmd rules
-  set tabstop=4
+  set tabstop=2
   set softtabstop=0
-  set shiftwidth=4
+  set shiftwidth=2
   set expandtab
 
   "" Map leader to ,
@@ -165,19 +213,20 @@ if !exists('g : vscode')
   "*****************************************************************************
   syntax on
   set ruler
-  set number relativenumber
+  set number
 
   let no_buffers_menu=1
-  "silent! colorscheme molokai
-  silent! colorscheme gruvbox
+  colorscheme molokai
+
 
   set mousemodel=popup
   set t_Co=256
   set guioptions=egmrti
-  set gfn="Fira Code"\ 10
+  set gfn=Monospace\ 10
 
   if has("gui_running")
     if has("gui_mac") || has("gui_macvim")
+      set guifont=Menlo:h12
       set transparency=7
     endif
   else
@@ -189,14 +238,16 @@ if !exists('g : vscode')
     let g:indentLine_char = '┆'
     let g:indentLine_faster = 1
 
-    
   endif
 
 
 
   "" Disable the blinking cursor.
   set gcr=a:blinkon0
-  set scrolloff=3
+
+  au TermEnter * setlocal scrolloff=0
+  au TermLeave * setlocal scrolloff=3
+
 
   "" Status bar
   set laststatus=2
@@ -441,11 +492,6 @@ if !exists('g : vscode')
   "" Custom configs
   "*****************************************************************************
 
-  " c
-  autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
-  autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 expandtab
-
-
   " html
   " for html files, 2 spaces
   autocmd Filetype html setlocal ts=2 sw=2 expandtab
@@ -459,6 +505,33 @@ if !exists('g : vscode')
     autocmd!
     autocmd FileType javascript setl tabstop=4|setl shiftwidth=4|setl expandtab softtabstop=4
   augroup END
+
+
+  " php
+  " Phpactor plugin
+  " Include use statement
+  nmap <Leader>u :call phpactor#UseAdd()<CR>
+  " Invoke the context menu
+  nmap <Leader>mm :call phpactor#ContextMenu()<CR>
+  " Invoke the navigation menu
+  nmap <Leader>nn :call phpactor#Navigate()<CR>
+  " Goto definition of class or class member under the cursor
+  nmap <Leader>oo :call phpactor#GotoDefinition()<CR>
+  nmap <Leader>oh :call phpactor#GotoDefinitionHsplit()<CR>
+  nmap <Leader>ov :call phpactor#GotoDefinitionVsplit()<CR>
+  nmap <Leader>ot :call phpactor#GotoDefinitionTab()<CR>
+  " Show brief information about the symbol under the cursor
+  nmap <Leader>K :call phpactor#Hover()<CR>
+  " Transform the classes in the current file
+  nmap <Leader>tt :call phpactor#Transform()<CR>
+  " Generate a new class (replacing the current file)
+  nmap <Leader>cc :call phpactor#ClassNew()<CR>
+  " Extract expression (normal mode)
+  nmap <silent><Leader>ee :call phpactor#ExtractExpression(v:false)<CR>
+  " Extract expression from selection
+  vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
+  " Extract method from selection
+  vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
 
 
   " python
@@ -489,10 +562,27 @@ if !exists('g : vscode')
   let g:airline#extensions#virtualenv#enabled = 1
 
   " Syntax highlight
-  " Default highlight is better than polyglot
-  let g:polyglot_disabled = ['python']
   let python_highlight_all = 1
 
+
+  " rust
+  " Vim racer
+  au FileType rust nmap gd <Plug>(rust-def)
+  au FileType rust nmap gs <Plug>(rust-def-split)
+  au FileType rust nmap gx <Plug>(rust-def-vertical)
+  au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+
+  " typescript
+  let g:yats_host_keyword = 1
+
+
+
+  " vuejs
+  " vim vue
+  let g:vue_disable_pre_processors=1
+  " vim vue plugin
+  let g:vim_vue_plugin_load_full_syntax = 1
 
 
   "*****************************************************************************
@@ -543,10 +633,12 @@ if !exists('g : vscode')
     let g:airline_symbols.linenr = ''
   endif
 
-  let g:neovide_cursor_vfx_mode = "pixiedust"
-  let g:neovide_cursor_vfx_particle_density = 150
+  xnoremap <C-E> :Inko "e"<CR>
+  nnoremap <C-E> V:Inko "e"<CR>
 
-  set guifont=FiraCode,D2Coding :h12
+  set guifont=FiraCode,D2Coding
+
+  let g:neovide_cursor_vfx_mode = "railgun"
 
 endif
 

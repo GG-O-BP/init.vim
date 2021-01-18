@@ -150,6 +150,10 @@ if !exists('g : vscode')
   "Prettier for ui-framework
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
+
+  "file icon settings
+  Plug 'ryanoasis/vim-devicons'
+
   "*****************************************************************************
   "*****************************************************************************
 

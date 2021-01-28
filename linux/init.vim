@@ -13,7 +13,7 @@ if !exists('g : vscode')
 
   let g:vim_bootstrap_langs = "html,javascript,php,python,rust,typescript"
   let g:vim_bootstrap_editor = "nvim"
-  let g:vim_bootstrap_theme = "molokai"
+  let g:vim_bootstrap_theme = "seoul256"
   let g:vim_bootstrap_frams = "vuejs"
 
   if !filereadable(vimplug_exists)
@@ -52,6 +52,8 @@ if !exists('g : vscode')
   Plug 'editor-bootstrap/vim-bootstrap-updater'
   Plug 'tpope/vim-rhubarb' " required by fugitive to :Gbrowse
   Plug 'tomasr/molokai'
+  Plug 'morhetz/gruvbox'
+  Plug 'junegunn/seoul256.vim'
 
   Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
@@ -133,7 +135,6 @@ if !exists('g : vscode')
   " vuejs
   Plug 'posva/vim-vue'
   Plug 'leafOfTree/vim-vue-plugin'
-
 
   "" Irc
   Plug 'marchelzo/ircnvim'
@@ -220,8 +221,9 @@ if !exists('g : vscode')
   set number
 
   let no_buffers_menu=1
-  colorscheme molokai
-
+  set background=dark
+  colorscheme seoul256
+  let g:seoul256_background = 239
 
   set mousemodel=popup
   set t_Co=256

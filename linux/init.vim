@@ -143,7 +143,6 @@ if !exists('g : vscode')
   "" Inko
   Plug 'GG-O-BP/inko.vim'
 
-
   "ESLint for ui-framework
   Plug 'eslint/eslint'
 
@@ -311,6 +310,8 @@ if !exists('g : vscode')
   set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
   nnoremap <silent> <F2> :NERDTreeFind<CR>
   nnoremap <silent> <F3> :NERDTreeToggle<CR>
+  nnoremap <silent> <F5> :NERDTree ~/dev/sources/dev_module_api_ui<CR>:vertical resize 30<CR>
+  nnoremap <silent> <F6> :NERDTree ~/dev/sources/dev_module_api<CR>:vertical resize 30<CR>
 
   " grep.vim
   nnoremap <silent> <leader>f :Rgrep<CR>
@@ -642,9 +643,11 @@ if !exists('g : vscode')
   xnoremap <C-E> :Inko "e"<CR>
   nnoremap <C-E> V:Inko "e"<CR>
 
-  set guifont=FiraCode,D2Coding
+  set guifont=FiraCode\ Nerd\ Font,D2Coding
 
   let g:neovide_cursor_vfx_mode = "railgun"
+
+  set mouse-=a
 
 endif
 
@@ -655,4 +658,4 @@ set list
 " Terminal settings
 tnoremap <C-[> <C-\><C-n>
 
-nnoremap <C-T> :15sp<CR>:term<CR><C-W>x
+nnoremap <C-T> :21sp<CR>:term<CR><C-W>x

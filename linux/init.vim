@@ -111,17 +111,22 @@ if !exists('g : vscode')
   " Vim racer
   Plug 'racer-rust/vim-racer'
 
+
   " Rust.vim
   Plug 'rust-lang/rust.vim'
+
 
   " Async.vim
   Plug 'prabirshrestha/async.vim'
 
+
   " Vim lsp
   Plug 'prabirshrestha/vim-lsp'
 
+
   " Asyncomplete.vim
   Plug 'prabirshrestha/asyncomplete.vim'
+
 
   " Asyncomplete lsp.vim
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
@@ -136,12 +141,14 @@ if !exists('g : vscode')
   Plug 'posva/vim-vue'
   Plug 'leafOfTree/vim-vue-plugin'
 
+
   "" Irc
   Plug 'marchelzo/ircnvim'
 
 
   "" Inko
   Plug 'GG-O-BP/inko.vim'
+
 
   "ESLint for ui-framework
   Plug 'eslint/eslint'
@@ -153,6 +160,11 @@ if !exists('g : vscode')
 
   "file icon settings
   Plug 'ryanoasis/vim-devicons'
+
+
+  "vim-startify
+  Plug 'mhinz/vim-startify'
+
 
   "*****************************************************************************
   "*****************************************************************************
@@ -310,8 +322,8 @@ if !exists('g : vscode')
   set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
   nnoremap <silent> <F2> :NERDTreeFind<CR>
   nnoremap <silent> <F3> :NERDTreeToggle<CR>
-  nnoremap <silent> <F5> :NERDTree ~/dev/sources/dev_module_api_ui<CR>:vertical resize 30<CR>
-  nnoremap <silent> <F6> :NERDTree ~/dev/sources/dev_module_api<CR>:vertical resize 30<CR>
+  nnoremap <silent> <F5> :NERDTree ~/dev/dev_module_api_ui<CR>:vertical resize 30<CR>
+  nnoremap <silent> <F6> :NERDTree ~/dev/dev_module_api<CR>:vertical resize 30<CR>
 
   " grep.vim
   nnoremap <silent> <leader>f :Rgrep<CR>

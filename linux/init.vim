@@ -176,6 +176,10 @@ Plug 'codota/tabnine-vim'
 Plug 'kjssad/quantum.vim'
 
 
+"theme
+Plug 'digitaltoad/vim-pug'
+
+
 "game
 Plug 'johngrib/vim-game-code-break'
 
@@ -338,7 +342,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
 nnoremap <silent> <F5> :NERDTree ~/dev/dev_module_api_ui<CR>:vertical resize 30<CR>
-nnoremap <silent> <F6> :NERDTree ~/dev/dev_module_api<CR>:vertical resize 30<CR>
+nnoremap <silent> <F6> :NERDTree ~/dev/pa_dbwork<CR>:vertical resize 30<CR>
 nnoremap <silent> <F7> :NERDTree ~/dev/pa_evaluation<CR>:vertical resize 30<CR>
 nnoremap <silent> <F8> :set filetype=python<CR>
 

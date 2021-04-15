@@ -341,10 +341,10 @@ let g:NERDTreeWinSize = 50
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite
 nnoremap <silent> <F2> :NERDTreeFind<CR>
 nnoremap <silent> <F3> :NERDTreeToggle<CR>
-nnoremap <silent> <F5> :NERDTree ~/dev/dev_module_api_ui<CR>:vertical resize 30<CR>
-nnoremap <silent> <F6> :NERDTree ~/dev/pa_dbwork<CR>:vertical resize 30<CR>
+nnoremap <silent> <F5> :NERDTree ~/dev/dev-pa_platform_vue/pa_api<CR>:vertical resize 30<CR>
+nnoremap <silent> <F6> :NERDTree ~/dev/dev-pa_platform_vue/pa_front<CR>:vertical resize 30<CR>
 nnoremap <silent> <F7> :NERDTree ~/dev/pa_evaluation<CR>:vertical resize 30<CR>
-nnoremap <silent> <F8> :set filetype=python<CR>
+nnoremap <silent> <F8> :NERDTree ~/dev/web_ui_module<CR>:vertical resize 30<CR>
 
 " grep.vim
 nnoremap <silent> <leader>f :Rgrep<CR>
